@@ -1,53 +1,73 @@
-# TinyLink – URL Shortener
+# TinyLink – URL Shortener Application
 
-TinyLink is a lightweight web application similar to bit.ly.  
-Users can shorten long URLs, track click statistics, and manage their links easily.
+TinyLink is a web application that allows users to create short links from long URLs.  
+It also tracks how many times each short link has been clicked and when it was last accessed.
 
----
-
-## 🚀 Live Demo
-🔗 Deployed URL: *(Add your Vercel/Render deployment link here)*
+This project was built as part of a technical assignment.
 
 ---
 
-## 🛠️ Tech Stack
+## Live Deployment
 
-- Next.js (frontend + backend routes)
-- Neon Postgres (database)
-- API REST endpoints
-- Tailwind CSS (UI styling)
+Application URL: (Add your deployed Vercel/Render URL here)
 
 ---
 
-## ✨ Features
+## Technology Used
 
-- Create short links with optional custom codes
-- Automatic redirects with live click tracking
-- Track:
-  - Total Clicks
-  - Last Clicked Time
-- Delete links anytime
-- Stats page for each short code
-- Responsive and polished UI
+- Next.js for both frontend and backend routes
+- Neon Postgres as the database
+- Tailwind CSS for user interface styling
 
 ---
 
-## 📌 Required Routes
+## Features
 
-| Purpose | Path | Method |
-|--------|------|--------|
-| Dashboard | `/` | GET |
-| Stats Page | `/code/:code` | GET |
-| Redirect | `/:code` | GET |
-| Health Check | `/healthz` | GET |
-| Create Link | `/api/links` | POST |
-| List All Links | `/api/links` | GET |
-| Link Stats | `/api/links/:code` | GET |
-| Delete Link | `/api/links/:code` | DELETE |
+- Create a short URL by providing a long target URL
+- Optionally allow the user to provide a custom shortcode
+- Each redirect increments a click counter
+- Display total clicks and last accessed time
+- Ability to delete a short link
+- Separate statistics page for each short code
 
 ---
 
-## 🧪 Health Check Example
+## Application Routes
 
-```json
-{ "ok": true, "version": "1.0" }
+| Path | Purpose | HTTP Method |
+|------|---------|-------------|
+| / | Dashboard: list, add, delete links | GET |
+| /code/:code | Stats page for one link | GET |
+| /:code | Redirect to target URL | GET |
+| /healthz | Health check | GET |
+| /api/links | Create a new link | POST |
+| /api/links | List all links | GET |
+| /api/links/:code | Get stats for one link | GET |
+| /api/links/:code | Delete a link | DELETE |
+
+---
+
+## API Requirements
+
+- The application returns HTTP 409 if a custom code already exists
+- Redirect uses status code 302
+- Deleted short codes return 404 on redirect
+
+---
+
+## Database Overview
+
+Table contains at least:
+
+- code: Unique shortcode (A–Z, a–z, 0–9, length 6–8)
+- target_url: The original long URL
+- clicks: Integer count of redirects
+- created_at: Timestamp
+- last_clicked_at: Timestamp
+
+---
+
+## Environment Variables
+
+Create a .env file with the following keys:
+
