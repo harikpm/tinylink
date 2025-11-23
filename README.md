@@ -9,7 +9,7 @@ This project was built as part of a technical assignment.
 
 ## Live Deployment
 
-Application URL: (Add your deployed Vercel/Render URL here)
+Application URL: https://tinylink-vyb4.vercel.app/
 
 ---
 
@@ -17,7 +17,7 @@ Application URL: (Add your deployed Vercel/Render URL here)
 
 - Next.js for both frontend and backend routes
 - Neon Postgres as the database
-- Tailwind CSS for user interface styling
+- Material UI (MUI) for UI components
 
 ---
 
